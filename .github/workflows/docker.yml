@@ -27,11 +27,15 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Image tags (GHCR needs a lowercase name)
+        id: meta
+        if: github.event_name == 'push'
+        run: |
+          IMG="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/interest-matrix"
+          echo "tags=$IMG:latest,$IMG:${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
       - uses: docker/build-push-action@v6
         if: github.event_name == 'push'
         with:
           context: .
           push: true
-          tags: |
-            ghcr.io/${{ github.repository_owner }}/interest-matrix:latest
-            ghcr.io/${{ github.repository_owner }}/interest-matrix:${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
