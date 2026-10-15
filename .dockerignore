@@ -1,0 +1,6 @@
+.git
+.github
+_to_delete
+README.md
+*.md
+.DS_Store

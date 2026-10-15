@@ -1,0 +1,15 @@
+services:
+  web:
+    build: .
+    image: interest-matrix:latest
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+  # Live edits without rebuilding: docker compose --profile dev up web-dev
+  web-dev:
+    profiles: ["dev"]
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro

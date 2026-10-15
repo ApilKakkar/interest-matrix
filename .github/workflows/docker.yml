@@ -1,0 +1,37 @@
+name: Build & publish image
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build (smoke test)
+        run: |
+          docker build -t interest-matrix:test .
+          docker run -d --name im -p 8080:8080 interest-matrix:test
+          sleep 3
+          curl -fsS http://localhost:8080/healthz
+          curl -fsS http://localhost:8080/ | grep -q "Interest Matrix"
+      - uses: docker/login-action@v3
+        if: github.event_name == 'push'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        if: github.event_name == 'push'
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/interest-matrix:latest
+            ghcr.io/${{ github.repository_owner }}/interest-matrix:${{ github.sha }}
