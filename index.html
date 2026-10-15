@@ -45,9 +45,8 @@ h1{margin:0;text-align:center;font-size:clamp(30px,5vw,46px);line-height:1.12;le
 .topbar .bar{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:16px}
 .topbar .logo{font-size:17px;white-space:nowrap;flex:none}
 @media (max-width:720px){.topbar{padding:10px 16px} .topbar .search{max-width:none;flex:1;min-width:0}} .topbar .logo i{width:26px;height:26px;border-radius:8px;font-size:13px}
-.homelink{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:3px;border:1px solid var(--teal-mid);background:var(--glass);color:var(--dark);transition:background .15s,transform .15s}
-.homelink:hover{background:var(--dark);color:#fff;border-color:var(--dark)} .homelink:active{transform:scale(.94)}
-.homelink:focus-visible{outline:3px solid var(--accent);outline-offset:2px} .homelink svg{width:18px;height:18px}
+.homeico{flex:none;width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--teal-mid);border-radius:3px;background:var(--glass);color:var(--teal);text-decoration:none;transition:background .15s,transform .15s}
+.homeico:hover{background:var(--teal-soft)} .homeico:active{transform:scale(.94)} .homeico:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .xlink{font-size:13px;font-weight:600;color:var(--teal);text-decoration:none;border:1px solid var(--teal-mid);border-radius:3px;padding:5px 11px;background:var(--glass);white-space:nowrap}
 .xlink:hover{background:var(--teal-soft)}
 .topbar .search{margin-left:auto;max-width:320px;padding:8px 16px;box-shadow:none}
@@ -151,7 +150,7 @@ footer{padding:24px;color:var(--muted);font-size:12.5px;text-align:center;backgr
   <div class="bar">
     <div class="logo"><i>◆</i>Interests</div>
     <input class="search" id="q" type="search" placeholder="Search interests… (AI, markets, games)" title="Press / to focus" autocomplete="off">
-    <a class="homelink" href="https://apilkakkar.com" title="Back to apilkakkar.com" aria-label="Back to apilkakkar.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg></a>
+    <a class="homeico" href="https://apilkakkar.com" title="apilkakkar.com" aria-label="Go to apilkakkar.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg></a>
   </div>
 </header>
 
@@ -277,7 +276,7 @@ const DATA = {
           kids:[
             { t:'Reading list', tag:'idea', d:'Books and papers worth a second look.' },
             { t:'How to edit', tag:'dec', d:'Everything lives in the DATA tree at the top of this file. Max 4 cards per level; regroup instead of adding a 5th.' },
-            { t:'Changelog', tag:'dec', d:'History of changes (newest first).', list:['<b>2026-10-16</b> — Added a home icon (top right) linking to apilkakkar.com.','<b>2026-10-15</b> — Page created, seeded from your profile and repos. Edit the DATA tree to make it yours.'] }
+            { t:'Changelog', tag:'dec', d:'History of changes (newest first).', list:['<b>2026-10-16</b> — Added a home icon (top right) linking to apilkakkar.com, styled to match the ml_ops_finance pages.','<b>2026-10-15</b> — Page created, seeded from your profile and repos. Edit the DATA tree to make it yours.'] }
           ]}
       ]}
   ]
